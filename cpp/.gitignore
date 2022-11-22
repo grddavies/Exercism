@@ -1,0 +1,6 @@
+# Build
+build/
+CMakeLists.txt
+# Tests
+*_test.cpp
+catch.hpp

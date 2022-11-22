@@ -1,0 +1,8 @@
+# Build
+stack.yaml
+.stack-work/
+package.yaml
+*.cabal
+stack.yaml.lock
+# Tests
+Tests.hs
