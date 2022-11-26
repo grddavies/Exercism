@@ -2,5 +2,6 @@
 build/
 CMakeLists.txt
 # Tests
+test/
 *_test.cpp
 catch.hpp
