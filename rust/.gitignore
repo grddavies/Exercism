@@ -1,3 +1,4 @@
 GETTING_STARTED.md
 Cargo.toml
 tests/
+*/.gitignore
