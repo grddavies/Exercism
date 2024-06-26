@@ -1,10 +1,13 @@
 module CollatzConjecture (collatz) where
 
+import Data.List (unfoldr)
+
 collatz :: Integer -> Maybe Integer
-collatz n = go 0 n
+collatz n
+  | n > 0 = Just $ countSteps n
+  | otherwise = Nothing
  where
-  go c x
-    | x < 1 = Nothing
-    | x == 1 = Just c
-    | x `mod` 2 == 0 = go (c+1) (x `div` 2)
-    | otherwise = go (c+1) (3 * x + 1)
+  countSteps = toInteger . length . unfoldr nextStep
+
+  nextStep 1 = Nothing
+  nextStep k = Just (k, if even k then k `div` 2 else 3 * k + 1)
