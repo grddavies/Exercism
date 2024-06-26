@@ -1,22 +1,20 @@
 module Clock (addDelta, fromHourMin, toString) where
 
-import Prelude hiding (min)
+import Text.Printf (printf)
 
 data Clock = Clock {
-    hour :: Int,
-    min :: Int
+    hours :: Int,
+    mins :: Int
   } deriving (Eq, Show)
 
 fromHourMin :: Int -> Int -> Clock
-fromHourMin hour min = Clock { hour=hours, min=mins }
+fromHourMin hh mm = Clock { hours=hh', mins=mm' }
   where
-    hours = (hour + q) `mod` 24
-    (q, mins) = min `divMod` 60
+    hh' = (hh + q) `mod` 24
+    (q, mm') = mm `divMod` 60
 
 toString :: Clock -> String
-toString clock = (fmt $ hour clock) ++ ":" ++ (fmt $ min clock)
-    where
-      fmt x = if x < 10 then "0" ++ show x else show x
+toString (Clock hh mm) = printf "%02d:%02d" hh mm
 
 addDelta :: Int -> Int -> Clock -> Clock
-addDelta h m clock = fromHourMin (hour clock + h) (min clock + m)
+addDelta hh mm (Clock hh' mm') = fromHourMin (hh' + hh) (mm' + mm)
